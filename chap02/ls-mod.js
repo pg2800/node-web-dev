@@ -1,8 +1,5 @@
 // Example:
-// node ls.js
-
-var fs = require('fs');
-var files = fs.readdirSync('.');
+// node ls-mod.js ../chap02
 
 Object.defineProperty(Object.prototype, "each", {
 	value: function (fn){
@@ -11,6 +8,10 @@ Object.defineProperty(Object.prototype, "each", {
 		}
 	}
 });
+
+var fs = require('fs')
+,dir = process.argv[2] || '.'
+,files = fs.readdirSync(dir);
 
 files.each(function (prop, val){
 	console.log(val);
