@@ -1,12 +1,14 @@
+// Go to: http://localhost:8124
 var http = require('http')
 ,util = require('util')
 ,url = require('url')
 ,os = require('os')
 
 ,server = http.createServer();
-server.on('request', function (request, response){
+server
+.on('request', function (request, response){
 
-	Ability to chain calls
+	// Ability to chain calls
 	var writeHead = response.writeHead;
 	response.writeHead = function (){
 		writeHead.apply(this, arguments);
@@ -16,15 +18,17 @@ server.on('request', function (request, response){
 	var request_url = url.parse(request.url, true/*???*/);
 	switch(request_url.pathname){
 		case '/':
-		response.writeHead(200, {'Content-type': 'text/html'});
-		response.end(["<html><head><title>Hello, world!</title></head>",
+		response
+		.writeHead(200, {'Content-type': 'text/html'})
+		.end(["<html><head><title>Hello, world!</title></head>",
 			"<body><h1>Hello, world!</h1>",
 			"<p><a href='/osinfo'>OS Info</a></p>",
 			"</body></html>"].join('\n'));
 		break;
 		case '/osinfo':
-		response.writeHead(200, {'Content-type':'text/html'});
-		response.end(["<html><head>",
+		response
+		.writeHead(200, {'Content-type':'text/html'})
+		.end(["<html><head>",
 			"<title>Operating System Info</title></head>",
 			"<body><h1>Operating System Info</h1>",
 			"<table>",
@@ -54,20 +58,21 @@ server.on('request', function (request, response){
 			.replace("{totalmem}", os.totalmem())
 			.replace("{freemem}", os.freemem())
 			.replace("{cpudata}", util.inspect(os.cpus()))
-			.replace("{netdata}", util.inspect(os.networkInterfaces())
+			.replace("{netdata}", util.inspect(os.networkInterfaces()))
 		//
-		));
+		);
 		//
 		break;
 		default:
 			// error
 			console.log("HOLA");
-			response.writeHead(404, {'Content-type': 'text/plain'});
-			response.end("bad URL "+request.url);
+			response
+			.writeHead(404, {'Content-type': 'text/plain'})
+			.end("bad URL "+request.url);
 		//
 		break;
 	}
 
-});
-server.listen(8124);
+})
+.listen(8124);
 console.log('listening to http://localhost:8124');
