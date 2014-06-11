@@ -16,9 +16,22 @@ exports.sniffOn = function (server){
 		response.writeContinue();
 	})
 	.on('upgrade', function (){
-		
+		util.log('e_upgrade');
+		util.log(requestToString(request));
 	})
 	.on('clientError', function (){
 		util.log('e_clientError');
 	});
+};
+var requestToString = exports.requestToString = function (request){
+	var str = 'request '+request.method+' '
+	+request.httpVersion+' '+request.url+'\n'
+	+JSON.stringify(url.parse(request.url, true))+'\n'
+	,counter = 0;
+
+	for(key in request.headers){
+		str += counter++ +' '+key+': '+request.headers[key]+'\n';
+	}
+	str += request.trailers + '\n' || "";
+	return str;
 };
