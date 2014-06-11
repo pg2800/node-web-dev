@@ -8,8 +8,9 @@ var http = require('http')
 // We can see although it was hidden in the implementation on chap02
 // That the server is based on EventEmitter
 server.on('request', function onRequest(request, response) {
-	response.writeHead(200, {'Content-Type': 'text/html'});
-	response.end('<html><h1>Hello, World!</h1></html>');
+	response
+	.writeHead(200, {'Content-Type': 'text/html'})
+	.end('<html><h1>Hello, World!</h1></html>');
 });
 server.listen(port, ip);
 
