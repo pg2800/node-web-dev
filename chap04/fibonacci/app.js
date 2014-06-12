@@ -4,8 +4,6 @@ var express = require('express')
 ,logger = require('morgan')
 ,cookieParser = require('cookie-parser')
 ,bodyParser = require('body-parser')
-// I added util to substitute console.log like in the book.
-,util = require('util')
 
 ,routes = require('./routes/index')
 ,users = require('./routes/users')
@@ -16,7 +14,10 @@ var express = require('express')
 // This section sets up and configures the Express application and middleware
 // The app.set method provides settings for Express
 app
+
+// I added a port
 .set('port', process.env.PORT || 3000)
+
 .set('views', path.join(__dirname, 'views'))
 .set('view engine', 'ejs')
 
