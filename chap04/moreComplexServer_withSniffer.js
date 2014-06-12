@@ -73,6 +73,10 @@ server
 		break;
 	}
 
-})
-.listen(8124);
+});
+
+// Adding sniffer.
+require('./httpsniffer').sniffOn(server);
+
+server.listen(8124);
 console.log('listening to http://localhost:8124');
