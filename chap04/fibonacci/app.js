@@ -4,6 +4,8 @@ var express = require('express')
 ,logger = require('morgan')
 ,cookieParser = require('cookie-parser')
 ,bodyParser = require('body-parser')
+// I added util to substitute console.log like in the book.
+,util = require('util')
 
 ,routes = require('./routes/index')
 ,users = require('./routes/users')
@@ -11,18 +13,22 @@ var express = require('express')
 ,app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// This section sets up and configures the Express application and middleware
+// The app.set method provides settings for Express
+app
+.set('port', process.env.PORT || 3000)
+.set('views', path.join(__dirname, 'views'))
+.set('view engine', 'ejs')
 
-app.use(favicon());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+.use(favicon())
+.use(logger('dev'))
+.use(bodyParser.json())
+.use(bodyParser.urlencoded())
+.use(cookieParser())
+.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', routes);
-app.use('/users', users);
+.use('/', routes)
+.use('/users', users);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
