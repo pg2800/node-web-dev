@@ -1,4 +1,5 @@
 // The purpose of wget.js is to make an HTTP request and show you the voluminous detail of the response
+// node wget.js http://example.com
 var http = require('http')
 ,url  = require('url')
 ,util = require('util')
