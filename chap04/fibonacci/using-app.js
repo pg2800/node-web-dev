@@ -2,14 +2,13 @@ var defaultApp = require('./app')
 ,http = require('http')
 ,util = require('util')
 
-,index = require('./routes/index')
-,fibonacci = require('./routes/fibonacci/index');
-,users = require('./routes/users')
+,routes = require('./routes/index')
+,fibonacci = require('./routes/fibonacci');
 
 defaultApp
-.get('/', index)
-.get('/users', users)
-.get('/fibonacci', fibonacci);
+.set('port', process.env.PORT || 3000)
+.use('/', routes.index)
+.use('/fibonacci', fibonacci.index);
 
 http
 .createServer(defaultApp)
