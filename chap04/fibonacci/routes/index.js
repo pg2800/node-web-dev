@@ -2,14 +2,14 @@
 // var router = express.Router();
 
 // /* GET home page. */
-// router.get('/', function(req, res) {
-//   res.render('index', { title: 'Express' });
+// router.get('/', function(request, response) {
+//   response.render('index', { title: 'Express' });
 // });
 
 // module.exports = router;
 
-exports.index = function(req, res) {
-  res.render('index', {
+exports.index = function(request, response) {
+  response.render('index', {
     title: "Math Calculator"
   });
 };
