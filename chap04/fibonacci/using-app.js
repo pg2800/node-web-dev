@@ -6,7 +6,7 @@ var defaultApp = require('./app')
 ,fibonacci = require('./routes/fibonacci');
 
 defaultApp
-.set('port', process.env.PORT || 3000)
+// .set('port', process.env.PORT || 3000)
 .use('/', routes.index)
 .use('/fibonacci', fibonacci.index);
 

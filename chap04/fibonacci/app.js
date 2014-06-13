@@ -21,11 +21,11 @@ app
 .use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
-// .use(function(req, res, next) {
-//     // var err = new Error('Not Found');
-//     // err.status = 404;
-//     // next();
-// });
+.use(function(req, res, next) {
+    // var err = new Error('Not Found');
+    // err.status = 404;
+    // next();
+});
 
 // error handlers
 function errorHandler(dev){
